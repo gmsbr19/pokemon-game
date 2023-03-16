@@ -21,10 +21,7 @@ def escolher_pokemon_inicial(player: Player):
             case "1": player.capturar(pikachu); break
             case "2": player.capturar(charmander); break
             case "3": player.capturar(squirtle); break
-    
-    player.mostrar_pokemons()
             
-
 
 player = Player("Thiago")
 player.capturar(PokemonFogo("Charmander",level=1))

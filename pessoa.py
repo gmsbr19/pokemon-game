@@ -31,15 +31,30 @@ class Pessoa:
             print("Você não possui pokémons!\n")
         else:
             print(f"\nPokémons de {self.nome}:")
-            for pokemon in self.pokemons:
-                print(f"\t{pokemon}")
+            for index, pokemon in enumerate(self.pokemons):
+                print(f"\t{index} - {pokemon}")
 
     def escolher_pokemon(self):
         self.mostrar_pokemons()
+
+        if self.pokemons:
+            while True:
+                escolha = input("Escolha seu Pokemon: ")
+                try:
+                    escolha = int(escolha)
+                    pokemon_escolhido = self.pokemons[escolha]
+                    print(f"{pokemon_escolhido} eu escolho você!!!")
+                    return pokemon_escolhido
+                except:
+                    print("Escolha inválida")
+        else:
+            print("ERRO: Esse jogador não possui Pokémons.")
+
     
     def batalhar(self, pessoa):
         print(f"{self} iniciou uma batalha com {pessoa}!")
-
+        pessoa.mostrar_pokemons()
+        self.escolher_pokemon()
 
 
 class Player(Pessoa):
@@ -59,3 +74,10 @@ class Inimigo(Pessoa):
                 pokemons.append(random.choice(POKEMONS))
 
         super().__init__(nome, pokemons)
+
+
+    def escolher_pokemon(self):
+        if self.pokemons:
+            pokemon_escolhido = random.choice(self.pokemons)
+        else:
+            print("ERRO: Esta pessoa não possui nenhum pokemon.")
